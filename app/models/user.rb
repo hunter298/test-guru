@@ -1,7 +1,9 @@
 class User < ApplicationRecord
-  has_many :tests
 
-  def tests_by_level(level)
-    self.tests.where(level: level).pluck(:title)
+  def tests_by_level level
+    tests = Result.where(user_id: self.id).pluck(:test_id).map do |num|
+      Test.find(num).title if Test.find(num).level == level
+    end
+    tests.compact
   end
 end
