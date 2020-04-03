@@ -4,9 +4,17 @@ class Test < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many :results, dependent: :destroy
   has_many :users, through: :results
-
-  def self.sort_reverse(category)
-    # Category.find_by(title: category).tests.order(title: :desc).pluck(:title)
-    joins(:category).where(categories: { title: category }).order(title: :desc).pluck(:title)
-  end
+  validates :title, presence: true,
+                    uniqueness: { scope: :level }
+  validates :level, numericality: { only_integer: true, greater_than: -1 }
+  scope :difficulty, ->(hardness) {
+    if hardness == :easy
+      where(level: 0..1)
+    elsif hardness == :medium
+      where(level: 2..4)
+    elsif hardness == :hard
+      where(level: 5..Float::INFINITY)
+    end
+  }
+  scope :sort_reverse, ->(category) { joins(:category).where(categories: { title: category }).order(title: :desc) }
 end
