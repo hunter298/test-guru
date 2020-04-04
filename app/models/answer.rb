@@ -8,7 +8,7 @@ class Answer < ApplicationRecord
   private
 
   def validate_max_answers
-    if Question.find(question_id).answers.count >= 4
+    if question.answers.count >= 4
       errors.add(:question_id, 'Has too much answers')
     end
   end
