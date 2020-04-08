@@ -17,8 +17,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    question = @test.questions.create!(question_params)
-    render plain: question.inspect
+    @test.questions.create!(question_params)
   end
 
   def edit
@@ -26,7 +25,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    Question.find(params[:id]).destroy
+    @question.destroy
   end
 
   def find_test
