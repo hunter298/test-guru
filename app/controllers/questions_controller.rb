@@ -5,27 +5,44 @@ class QuestionsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
 
   def index
-    render plain: @test.questions.pluck(:body)
+    @questions = Question.where(test_id: params[:test_id])
   end
 
   def show
-    render plain: @question.body
+    @question = Question.find(params[:id])
   end
 
   def new
-
+    @question = Question.new
   end
 
   def create
-    @test.questions.create!(question_params)
+    @question = @test.questions.create!(question_params)
+    if @question.save
+      redirect_to @test
+    else
+      render :new
+    end
   end
 
   def edit
-
+    @question = Question.find(params[:id])
   end
 
   def destroy
     @question.destroy
+
+    redirect_to @question.test
+  end
+
+  def update
+    @question = Question.find(params[:id])
+
+    if @question.update(question_params)
+      redirect_to @question
+    else
+      render :edit
+    end
   end
 
   def find_test
@@ -43,6 +60,6 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    {test_id: @test.id, body: params[:question][:body]}
+    params.require(:question).permit(:body)
   end
 end

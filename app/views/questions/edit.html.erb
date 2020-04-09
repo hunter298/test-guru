@@ -1,1 +1,3 @@
-<a href="/questions/<%= params[:id] %>" data-method="delete"> Delete </a>
+<h1><%= question_header(@question) %></h1>
+<%= render 'form' %>
+<%= link_to 'Back', test_path(@question.test) %>
