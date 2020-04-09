@@ -4,7 +4,7 @@ module QuestionsHelper
     if question.persisted?
       "Edit #{question.test.title} Question"
     else
-      "Create New #{Test.find(params[:test_id]).title} Question"
+      "Create New #{question.test.title} Question"
     end
   end
 end
