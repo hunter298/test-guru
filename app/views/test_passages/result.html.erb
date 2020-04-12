@@ -1,0 +1,6 @@
+<h1>Test <%= @test_passage.test.title %> completed!</h1>
+
+<p><span class="<%= @test_passage.success_class %>"> <%= @test_passage.success_rate %></span>% of questions were answered correctly. </p>
+<p>Result: <%= @test_passage.success_class %></p>
+
+<%= link_to 'Back', tests_path %>

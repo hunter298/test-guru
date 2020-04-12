@@ -48,12 +48,3 @@ answers = Answer.create!([{body: '2.7.0', correct: true, question: questions[0]}
                           {body: 'Brush', correct: true, question: questions[8]},
                           {body: 'Rag', correct: false, question: questions[8]},
                           {body: 'Toothbrush', correct: false, question: questions[8]}])
-results = Result.create!([{user_id: 1, test_id: 1},
-                          {user_id: 1, test_id: 2},
-                          {user_id: 1, test_id: 3},
-                          {user_id: 1, test_id: 4},
-                          {user_id: 1, test_id: 5},
-                          {user_id: 1, test_id: 6},
-                          {user_id: 2, test_id: 2},
-                          {user_id: 2, test_id: 3},
-                          {user_id: 2, test_id: 6}])

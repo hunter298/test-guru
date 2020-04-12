@@ -1,4 +1,12 @@
 <h3> Question of test "<%= @question.test.title %>":</h3>
-<h2> <%= @question.body %></h2>
+
+<p> <%= @question.body %></p>
+<h2>Answers:</h2>
+
+<%= link_to 'Add answer', new_question_answer_path(@question) %>
+<ol>
+  <%= render @question.answers %>
+</ol>
+
 <%= link_to 'Edit', edit_question_path(@question) %><br>
 <%= link_to 'Back to test', test_path(@question.test) %>

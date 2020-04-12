@@ -3,9 +3,11 @@
 one:
   user: one
   test: one
-  score: 1
+  current_question: one
+  correct_questions: 1
 
 two:
   user: two
   test: two
-  score: 1
+  current_question: two
+  correct_questions: 1
