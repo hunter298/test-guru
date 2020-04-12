@@ -1,6 +1,6 @@
 class Answer < ApplicationRecord
   belongs_to :question
-  scope :right, -> { where(correct: true) }
+  scope :correct, -> { where(correct: true) }
   validates :body, presence: true
   validate :validate_max_answers, on: :create
   # validate :validate_minimum_answers, on: :destroying???????
