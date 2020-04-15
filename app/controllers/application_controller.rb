@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     unless current_user
-      session[:required_page] = {controller: controller_name, action: action_name, id: params[:id]}
+      cookies[:required_page] = request.path
       redirect_to login_path, alert: 'You are not logged in!'
     end
   end

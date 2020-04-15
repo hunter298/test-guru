@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get :signup, to: 'users#new'
   get :login, to: 'sessions#new'
-  get :quit, to: 'sessions#exit'
+  delete :logout, to: 'sessions#logout'
 
   resources :tests do
     resources :questions, shallow: true, except: [:index] do
