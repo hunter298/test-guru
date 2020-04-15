@@ -7,12 +7,7 @@ class SessionsController < ApplicationController
 
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
-      if cookies[:required_page]
-        redirect_to cookies[:required_page]
-        cookies[:required_page] = nil
-      else
-        redirect_to root_path
-      end
+      redirect_to cookies.delete(:required_page) || root_path
     else
       flash.now[:alert] = 'Something wrong, check Your email and password'
       render :new
