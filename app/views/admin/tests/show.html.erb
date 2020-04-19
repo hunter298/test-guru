@@ -1,0 +1,29 @@
+<p>
+  <strong> Title: </strong>
+  <%= @test.title %>
+</p>
+<p>
+  <strong> Category: </strong>
+  <%= @test.category.title %>
+</p>
+<p>
+  <strong> Level: </strong>
+  <%= @test.level %>
+</p>
+<p>
+  <strong> Author: </strong>
+  <%= @test.creator.email %>
+</p>
+<strong> Questions: </strong>
+<table>
+  <tr>
+    <th>Body</th>
+    <th colspan="3">Actions</th>
+  </tr>
+  <%= link_to 'Add question', new_admin_test_question_path(@test.id) %> <br>
+
+    <%= render partial: 'admin/questions/question', collection: @test.questions %>
+</table><br>
+<%= link_to 'Edit', edit_admin_test_path(@test) %>
+<%= link_to 'Back', admin_tests_path %>
+
