@@ -9,4 +9,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name])
   end
 
+  # to redirect admins to admin panel & users to tests list
+  def after_sign_in_path_for(resource)
+    current_user.is_a?(Admin) ? admin_tests_path : stored_location_for(resource)
+  end
+
 end
