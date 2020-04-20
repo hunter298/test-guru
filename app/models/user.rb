@@ -1,17 +1,17 @@
 class User < ApplicationRecord
+
+  has_many :test_passages, dependent: :destroy
+  has_many :tests, through: :test_passages
+  has_many :creations, foreign_key: "creator_id", dependent: :destroy, class_name: "Test"
+
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
          :registerable,
          :recoverable,
          :rememberable,
          :validatable,
          :confirmable
-
-  has_many :test_passages, dependent: :destroy
-  has_many :tests, through: :test_passages
-  has_many :creations, foreign_key: "creator_id", dependent: :destroy, class_name: "Test"
-  validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}
 
   def tests_by_level(level)
     tests.where(level: level)
@@ -21,5 +21,11 @@ class User < ApplicationRecord
     test_passages.order(id: :desc).find_by(test: test)
   end
 
+  def admin?
+    self.is_a?(Admin)
+  end
 
+  def full_name
+    first_name.nil? ? email : first_name
+  end
 end

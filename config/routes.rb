@@ -7,15 +7,12 @@ Rails.application.routes.draw do
              controllers: { sessions: 'users/sessions' } # to add customization to devise sessions controller
 
   resources :tests, only: :index do
-    member do
-      post :start
-    end
+      post :start, on: :member
+
   end
 
   resources :test_passages, only: %i[show update] do
-    member do
-      get :result
-    end
+      get :result, on: :member
   end
 
   namespace :admin do
