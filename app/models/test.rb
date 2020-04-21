@@ -4,9 +4,11 @@ class Test < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many :test_passages, dependent: :destroy
   has_many :users, through: :test_passages
+  validates :category_id, presence: true
   validates :title, presence: true,
                     uniqueness: { scope: :level }
   validates :level, numericality: { only_integer: true, greater_than: -1 }
+
   scope :difficulty, ->(hardness) {
     if hardness == :easy
       where(level: 0..1)

@@ -20,8 +20,6 @@ ru:
         category_id: "Категория"
       question:
         body: "Вопрос"
-    select:
-      prompt: "Please select!!!!!!!!!!!!!!!!"
 
   tests:
     index:
