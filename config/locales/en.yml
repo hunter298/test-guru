@@ -31,3 +31,126 @@
 
 en:
   hello: "Hello world"
+
+  helpers:
+    submit:
+      test:
+        create: "Create test"
+        update: "Change test"
+      question:
+        create: "Create question"
+        update: "Change question"
+      answer:
+        create: "Create answer"
+        update: "Change answer"
+    label:
+      test:
+        title: "Test title"
+        level: "Difficulty level"
+        category_id: "Test category"
+      question:
+        body: "Body"
+
+  tests:
+    index:
+      header: "All tests:"
+      title: "Title"
+      level: "Level"
+      category: "Category"
+      author: "Author"
+      quest_quantity: "Qestion q-ty"
+      actions: "Actions"
+    test:
+      start: "Start"
+
+  test_passages:
+    show:
+      header: "Passing the %{title} test"
+      count: "Question %{number} of %{total}"
+      next: "Next question"
+    result:
+      header: "Test %{title} passed"
+      back: "Back"
+      percent_correct: "% of question were answered correctly"
+      result: "Result"
+      successfull: "successfull"
+      unsuccessfull: "unsuccessfull"
+
+  admin:
+    tests:
+      index:
+        header: "All test for administration:"
+        title: "Title"
+        level: "Level"
+        category: "Category"
+        author: "Author"
+        quest_quantity: "Qestion q-ty"
+        actions: "Actions"
+        add_test: "Add new test"
+      new:
+        create_new_test: "Create new test:"
+      create:
+        success: "Test created successfully"
+      show:
+        title: "Title"
+        level: "Level"
+        category: "Category"
+        author: "Author"
+        question: "Question"
+        add_question: "Add question"
+        action: "Action"
+        edit: "Edit"
+        back: "Back"
+      edit:
+        header: "Edit %{title} test"
+        back: "Back"
+      test:
+        open: "Open"
+        edit: "Edit"
+        delete: "Delete"
+        confirm: "Are You sure?"
+      form:
+        select: "Choose category"
+    questions:
+      question:
+        open: "Open"
+        edit: "Edit"
+        delete: "Delete"
+        confirm: "Are You sure?"
+      new:
+        header_new: "Create new question for %{title} test"
+        back: "Back"
+      edit:
+        header_edit: "Edit question of %{title} test"
+        back: "Back"
+      show:
+        header: "Question of test %{title}"
+        answers: "Answers"
+        add_answer: "Add answer"
+        edit: "Edit"
+        back: "Back to test"
+    answers:
+      answer:
+        open: "Open"
+        edit: "Edit"
+        delete: "Delete"
+        confirm: "Are You sure?"
+      edit:
+        header: "Edit answer"
+        back: "Back to question"
+      new:
+        header: "New answer"
+        back: "Back to question"
+      show:
+        question: "Question"
+        answer: "Answer"
+        correct: "Correct"
+        edit: "Edit"
+        back: "Back"
+
+
+  shared:
+    errors:
+      header:
+        one: "%{count} error"
+        other: "%{count} errors"

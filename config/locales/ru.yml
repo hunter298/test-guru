@@ -1,0 +1,131 @@
+ru:
+  hello: "Привет мир"
+
+  helpers:
+    submit:
+      test:
+        create: "Создать тест"
+        update: "Изменить тест"
+      question:
+        create: "Создать вопрос"
+        update: "Изменить вопрос"
+      answer:
+        create: "Создать ответ"
+        update: "Изменить ответ"
+
+    label:
+      test:
+        title: "Навзание"
+        level: "Уровен сложности"
+        category_id: "Категория"
+      question:
+        body: "Вопрос"
+    select:
+      prompt: "Please select!!!!!!!!!!!!!!!!"
+
+  tests:
+    index:
+      header: "Список доступных тестов:"
+      title: "Название"
+      level: "Уровень"
+      category: "Категория"
+      author: "Автор"
+      quest_quantity: "К-во вопросов"
+      actions: "Действия"
+    test:
+      start: "Начать"
+
+  test_passages:
+    show:
+      header: "Прохождение теста %{title}"
+      count: "Вопрос %{number} из %{total}"
+      next: "Следующий вопрос"
+    result:
+      header: "Тест %{title} пройден"
+      back: "Назад"
+      percent_correct: "% ответов были даны правильно"
+      result: "Результат"
+      successfull: "успех"
+      unsuccessfull: "провал"
+
+  admin:
+    tests:
+      index:
+        header: "Список тестов для редактирования"
+        title: "Название"
+        level: "Уровень"
+        category: "Категория"
+        author: "Автор"
+        quest_quantity: "К-во вопросов"
+        actions: "Действия"
+        add_test: "Добавить новый тест"
+      new:
+        create_new_test: "Создать новый тест:"
+      create:
+        success: "Тест успешно создан"
+      show:
+        title: "Название"
+        level: "Уровень сложности"
+        category: "Категория"
+        author: "Автор"
+        question: "Вопрос"
+        add_question: "Добавить вопрос"
+        action: "Действие"
+        edit: "Редактировать"
+        back: "Назад"
+      edit:
+        header: "Изменить тест %{title}"
+        back: "Назад"
+      test:
+        open: "Открыть"
+        edit: "Редактировать"
+        delete: "Удалить"
+        confirm: "Вы уверенны?"
+      form:
+        select: "Выберите категорию"
+    questions:
+      question:
+        open: "Открыть"
+        edit: "Редактировать"
+        delete: "Удалить"
+        confirm: "Вы уверенны?"
+      new:
+        header_new: "Создать новый вопрос теста %{title}"
+        back: "Назад"
+      edit:
+        header_edit: "Редактировать вопрос теста %{title}"
+        back: "Назад"
+      show:
+        header: "Вопрос теста %{title}"
+        answers: "Ответы"
+        add_answer: "Добавить ответ"
+        edit: "Редактировать"
+        back: "Назад к тесту"
+    answers:
+      answer:
+        open: "Открыть"
+        edit: "Редактировать"
+        delete: "Удалить"
+        confirm: "Ты уверен?"
+      edit:
+        header: "Редактировать ответ"
+        back: "Назад к вопросу"
+      new:
+        header: "Новый ответ"
+        back: "Назад к вопросу"
+      show:
+        question: "Вопрос"
+        answer: "Ответ"
+        correct: "Правильно"
+        edit: "Редактировать"
+        back: "Назад к вопросу"
+
+
+
+  shared:
+    errors:
+      header:
+        one: "Обнаружена %{count} ошибка"
+        few: "Обнаружены %{count} ошибки"
+        many: "Обнаружено %{count} ошибок"
+        other: "Обнуружены %{count} ошибки"

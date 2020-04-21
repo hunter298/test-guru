@@ -1,0 +1,32 @@
+en:
+  activerecord:
+    models:
+      test: "Test"
+      question: "Question"
+      answer: "Answer"
+      user: "User"
+      created_at: "Created"
+      updated_at: "Updated"
+    question:
+      body: "Question"
+      test: "Test"
+      created_at: "Created"
+      updated_at: "Updated"
+    answer:
+      body: "Answer"
+      question: "question"
+      created_at: "Created"
+      updated_at: "Updated"
+      correct: "Correct"
+
+    attributes:
+      test:
+        title: "Test title"
+        level: "Difficulty level"
+        category_id: "Test category"
+        creator: "Author"
+
+    errors:
+      messages:
+        blank: "Can't be empty"
+
