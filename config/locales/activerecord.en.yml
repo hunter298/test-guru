@@ -26,6 +26,7 @@ en:
         category_id: "Test category"
         creator: "Author"
 
+
     errors:
       messages:
         blank: "Can't be empty"
