@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def github_url(author, repo)
-    link_to 'GitHub', "http://github.com/#{author}/#{repo}", target: '_blank'
+    link_to 'GitHub', "http://github.com/#{author}/#{repo}", target: '_blank', class: "text-dark"
   end
 
   def flash_message(type)

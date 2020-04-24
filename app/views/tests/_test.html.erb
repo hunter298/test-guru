@@ -1,8 +1,8 @@
 <tr>
   <td><%= test.title %></td>
-  <td><%= test_level(test) %></td>
+  <td class="d-none d-md-table-cell" ><%= test_level(test) %></td>
   <td><%= test.category.title %></td>
-  <td><%= test.creator.email %></td>
-  <td><%= test.questions.count %></td>
+  <td class="d-none d-md-table-cell" ><%= test.creator.email %></td>
+  <td class="d-none d-md-table-cell" ><%= test.questions.count %></td>
   <td><%= button_to t('.start'), start_test_path(test) %></td>
 </tr>
