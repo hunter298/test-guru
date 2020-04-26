@@ -45,6 +45,9 @@ ru:
       result: "Результат"
       successfull: "успех"
       unsuccessfull: "провал"
+    gist:
+      success: "Гист был успешно сохранен!"
+      fail: "Попытка сохранить гист провалилась!"
 
   admin:
     tests:

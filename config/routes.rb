@@ -4,15 +4,18 @@ Rails.application.routes.draw do
 
   devise_for :users, path: :gurus,
              path_names: {sign_in: :login, sign_out: :logout},
-             controllers: { sessions: 'users/sessions' } # to add customization to devise sessions controller
+             controllers: {sessions: 'users/sessions'} # to add customization to devise sessions controller
 
   resources :tests, only: :index do
-      post :start, on: :member
+    post :start, on: :member
 
   end
 
   resources :test_passages, only: %i[show update] do
-      get :result, on: :member
+    member do
+      get :result
+      post :gist
+    end
   end
 
   namespace :admin do
