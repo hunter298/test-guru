@@ -28,6 +28,9 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+# for storing sensitive data
+gem 'dotenv-rails', group: [:development, :test]
+
 #GitHub REST API
 gem 'octokit', '~> 4.0'
 
@@ -36,7 +39,7 @@ gem 'faraday'
 
 #UI
 gem 'jquery-rails'
-gem 'bootstrap', '~>4.0.0.beta'
+gem 'bootstrap', '~>4.3.1'
 
 #AUTH
 gem 'devise', '~> 4.0'
@@ -45,8 +48,7 @@ gem 'devise', '~> 4.0'
 gem 'rails-i18n'
 
 group :development, :test do
-  # for storing sensitive data
-  gem 'dotenv-rails'
+
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

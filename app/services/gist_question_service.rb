@@ -8,7 +8,6 @@ class GistQuestionService
 
   def call
     @client.create_gist(gist_params)
-    # method return number of response. 2XX - success
     @client.last_response
   end
 
