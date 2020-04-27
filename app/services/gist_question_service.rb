@@ -3,20 +3,22 @@ class GistQuestionService
   def initialize(question, client: nil)
     @question = question
     @test = @question.test
-    @client = client || GitHubClient.new
+    @client = client || Octokit::Client.new(access_token: ENV['ACCESS_TOKEN'])
   end
 
   def call
     @client.create_gist(gist_params)
+    # method return number of response. 2XX - success
+    @client.last_response
   end
 
   private
 
   def gist_params
     {
-        description: "Question from test #{@test} from TestGuru",
+        description: (I18n.translate('services.gist_question_service.gist_params.description', title: @test.title)),
         files: {
-            'test-guru-question.txt' => {
+            I18n.translate('services.gist_question_service.gist_params.file_name') => {
                 content: gist_content
             }
         }

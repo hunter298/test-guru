@@ -48,6 +48,7 @@ ru:
     gist:
       success: "Гист был успешно сохранен!"
       fail: "Попытка сохранить гист провалилась!"
+      view: "Просмотр"
 
   admin:
     tests:
@@ -60,6 +61,7 @@ ru:
         quest_quantity: "К-во вопросов"
         actions: "Действия"
         add_test: "Добавить новый тест"
+        gists: "Показать вопросы сохраненные в гист"
       new:
         create_new_test: "Создать новый тест:"
       create:
@@ -120,6 +122,15 @@ ru:
         correct: "Правильно"
         edit: "Редактировать"
         back: "Назад к вопросу"
+    gists:
+      index:
+        header: "Все вопросы сохраненные в гист"
+        question: "Вопрос"
+        url: "Ссылка на гист"
+        author: "Автор"
+        back: "Назад"
+      gist:
+        link: "Перейти"
 
 
 
@@ -130,3 +141,9 @@ ru:
         few: "Обнаружены %{count} ошибки"
         many: "Обнаружено %{count} ошибок"
         other: "Обнуружены %{count} ошибки"
+
+  services:
+    gist_question_service:
+      gist_params:
+        file_name: "вопрос_тестгуру.txt"
+        description: "Вопрос теста %{title} на ТестГуру"

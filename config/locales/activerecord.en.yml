@@ -30,4 +30,5 @@ en:
     errors:
       messages:
         blank: "Can't be empty"
+  file_name: ""
 

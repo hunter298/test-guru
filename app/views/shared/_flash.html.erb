@@ -1,9 +1,9 @@
 <% flash.each do |key, message| %>
   <% if key == 'alert' %>
-    <div class="alert alert-danger mt-3" role="alert"> <%= message %></div>
+    <div class="alert alert-danger mt-3" role="alert"> <%= message.html_safe %></div>
   <% elsif key == 'notice' %>
-    <div class="alert alert-primary mt-3" role="alert"> <%= message %></div>
+    <div class="alert alert-primary mt-3" role="alert"> <%= message.html_safe %></div>
   <% else %>
-    <div class="alert alert-secondary mt-3" role="alert"> <%= message %></div>
+    <div class="alert alert-secondary mt-3" role="alert"> <%= message.html_safe %></div>
   <% end %>
 <% end %>
