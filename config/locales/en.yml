@@ -76,7 +76,7 @@ en:
       successfull: "successfull"
       unsuccessfull: "unsuccessfull"
     gist:
-      success: "Gist sved successfully!"
+      success: "Gist saved successfully!"
       fail: "Attempt to save gist failed!"
       view: "View"
 

@@ -1,17 +1,21 @@
 class GistQuestionService
 
-  def initialize(question, client: nil)
+  def initialize(question, client = default_client)
     @question = question
     @test = @question.test
-    @client = client || Octokit::Client.new(access_token: ENV['ACCESS_TOKEN'])
+    @client = client
   end
 
   def call
     @client.create_gist(gist_params)
-    @client.last_response
+    Result.new(@client.last_response)
   end
 
   private
+
+  def default_client
+    Octokit::Client.new(access_token: ENV['ACCESS_TOKEN'])
+  end
 
   def gist_params
     {
@@ -28,5 +32,18 @@ class GistQuestionService
     content = [@question.body]
     content += @question.answers.pluck(:body)
     content.join("\n")
+  end
+end
+
+class Result
+
+  attr_reader :html_url
+
+  def initialize(response)
+    @html_url = response.data[:html_url]
+  end
+
+  def success?
+    @html_url.present?
   end
 end
