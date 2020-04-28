@@ -159,9 +159,6 @@ en:
         url: "Gist URL"
         author: "Author"
         back: "Back"
-      gist:
-        link: "Link"
-
 
   shared:
     errors:

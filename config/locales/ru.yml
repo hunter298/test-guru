@@ -129,11 +129,7 @@ ru:
         url: "Ссылка на гист"
         author: "Автор"
         back: "Назад"
-      gist:
-        link: "Перейти"
-
-
-
+      
   shared:
     errors:
       header:
