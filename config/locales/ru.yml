@@ -50,6 +50,10 @@ ru:
       fail: "Попытка сохранить гист провалилась!"
       view: "Просмотр"
 
+  users:
+    sessions:
+      hello: "Привет, %{name}!"
+
   admin:
     tests:
       index:

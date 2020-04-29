@@ -80,6 +80,10 @@ en:
       fail: "Attempt to save gist failed!"
       view: "View"
 
+  users:
+    sessions:
+      hello: "Hello, %{name}!"
+
   admin:
     tests:
       index:

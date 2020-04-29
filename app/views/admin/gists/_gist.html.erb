@@ -1,5 +1,5 @@
 <tr>
   <td><%= truncate(gist.question, length: 25, escape: false) %></td>
-  <td><%= link_to "#{gist.gist_url.scan(/\w+$/).first}", gist.gist_url, target: '_blank' %></td>
+  <td><%= link_to "#{gist.gist_url.split('/').last}", gist.gist_url, target: '_blank' %></td>
   <td><%= gist.user.email %></td>
 </tr>

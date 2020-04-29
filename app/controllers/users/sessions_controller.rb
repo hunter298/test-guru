@@ -7,6 +7,6 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def custom_welcome
-    flash[:notice] = "Hello, #{current_user.full_name}!"
+    flash[:notice] = t('.hello', name: current_user.full_name)
   end
 end
