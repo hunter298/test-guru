@@ -120,6 +120,8 @@ en:
         confirm: "Are You sure?"
       form:
         select: "Choose category"
+      form_inline:
+        submit: "Okay"
     questions:
       question:
         open: "Open"

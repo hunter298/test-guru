@@ -90,6 +90,8 @@ ru:
         confirm: "Вы уверенны?"
       form:
         select: "Выберите категорию"
+      form_inline:
+        submit: "Окей"
     questions:
       question:
         open: "Открыть"
