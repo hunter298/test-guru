@@ -177,3 +177,10 @@ en:
       gist_params:
         file_name: "test_guru_question.txt"
         description: "Question from test %{title} from TestGuru"
+
+  feedbacks:
+    new:
+      header: "We are happy to read Your feedback!"
+      email: "Email:"
+      feedback: "Feedback:"
+      submit: "Send"

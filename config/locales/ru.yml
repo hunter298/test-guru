@@ -149,3 +149,10 @@ ru:
       gist_params:
         file_name: "вопрос_тестгуру.txt"
         description: "Вопрос теста %{title} на ТестГуру"
+
+  feedbacks:
+    new:
+      header: "Мы будем счастливы узанть, что вы думаете о нас!"
+      email: "Адрес:"
+      feedback: "Отзыв:"
+      submit: "Отправить"
