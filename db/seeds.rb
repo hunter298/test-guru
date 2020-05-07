@@ -7,12 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 categories = Category.create!([{title: 'programming'}, {title: 'design'}, {title: 'other'}])
-tests = Test.create!([{title: 'Ruby', level: 1, category: categories[0], creator: User.find[2]},
-              {title: 'Rails', level: 2, category: categories[0], creator: User.find[2]},
-              {title: 'Fortran', level: 3, category: categories[0], creator: User.find[2]},
-              {title: 'Photoshop', level: 1, category: categories[1], creator: User.find[1]},
-              {title: 'Coloring', level: 2, category: categories[1], creator: User.find[1]},
-              {title: 'Cleaning', level: 0, category: categories[2], creator: User.find[1]}])
+tests = Test.create!([{title: 'Ruby', level: 1, category: categories[0], creator: User.find(2)},
+              {title: 'Rails', level: 2, category: categories[0], creator: User.find(2)},
+              {title: 'Fortran', level: 3, category: categories[0], creator: User.find(2)},
+              {title: 'Photoshop', level: 1, category: categories[1], creator: User.find(1)},
+              {title: 'Coloring', level: 2, category: categories[1], creator: User.find(1)},
+              {title: 'Cleaning', level: 0, category: categories[2], creator: User.find(1)}])
 questions = Question.create!([{body: 'Which of following is current version of Ruby?', test: tests[0]},
                               {body: 'How to create an Array?', test: tests[0]},
                               {body: 'What is Rails', test: tests[1]},
