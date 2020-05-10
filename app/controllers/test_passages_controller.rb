@@ -19,7 +19,8 @@ class TestPassagesController < ApplicationController
     @test_passage.accept!(params[:answer_ids])
 
     if @test_passage.completed?
-      earned_budges(@test_passage).each { |badge| @test_passage.user.badges.push(badge) }
+      @test_passage.successful? ? @test_passage.update(success: true) : @test_passage.update(success: false)
+          # earned_budges(@test_passage).each { |badge| @test_passage.user.badges.push(badge) }
       TestsMailer.completed_test(@test_passage).deliver_now
       redirect_to result_test_passage_path(@test_passage)
     else

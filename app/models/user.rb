@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 
   has_many :test_passages, dependent: :destroy
+  has_many :successful_test_passages, -> { where(success: true) }, class_name: 'TestPassage'
   has_many :gists,  dependent: :destroy
   has_many :tests, through: :test_passages
   has_many :creations, foreign_key: "creator_id", dependent: :destroy, class_name: "Test"
