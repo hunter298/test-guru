@@ -32,4 +32,6 @@ Rails.application.routes.draw do
 
   resources :feedbacks, only: %i[new create]
 
+  get :check, to: 'test_passages#check'
+
 end

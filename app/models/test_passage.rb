@@ -27,6 +27,12 @@ class TestPassage < ApplicationRecord
     test.questions.order(:id).where('id <= :current', current: current_question.id).count
   end
 
+  # def check_for_budges
+  #   if self.successful?
+  #     Badge.all.each
+  #   end
+  # end
+
   private
 
   def before_validation_set_current_question

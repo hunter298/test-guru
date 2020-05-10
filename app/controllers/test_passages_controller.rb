@@ -11,10 +11,15 @@ class TestPassagesController < ApplicationController
 
   end
 
+  def check
+
+  end
+
   def update
     @test_passage.accept!(params[:answer_ids])
 
     if @test_passage.completed?
+      earned_budges(@test_passage).each { |badge| @test_passage.user.badges.push(badge) }
       TestsMailer.completed_test(@test_passage).deliver_now
       redirect_to result_test_passage_path(@test_passage)
     else

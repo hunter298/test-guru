@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_27_181230) do
+ActiveRecord::Schema.define(version: 2020_05_10_194907) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
     t.string "body", null: false
@@ -19,6 +22,26 @@ ActiveRecord::Schema.define(version: 2020_04_27_181230) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "badges", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "image", default: "bronze", null: false
+    t.string "quantity"
+    t.string "category"
+    t.string "level"
+    t.boolean "exact_test", default: false, null: false
+    t.integer "test_id"
+    t.integer "attempts"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "badges_users", id: false, force: :cascade do |t|
+    t.bigint "badge_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["badge_id"], name: "index_badges_users_on_badge_id"
+    t.index ["user_id"], name: "index_badges_users_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
