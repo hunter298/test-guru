@@ -9,7 +9,10 @@ class Badge < ApplicationRecord
     if exact_test
       test_id == test_passage.test.id && check_attempts(test_passage)
     else
-      amount == matched_tests(user_success(test_passage)).count && check_attempts(test_passage)
+      current_scope = matched_tests(user_success(test_passage))
+      if current_scope.include?(test_passage.test)
+        amount == current_scope.count && check_attempts(test_passage)
+      end
     end
   end
 
@@ -45,6 +48,7 @@ class Badge < ApplicationRecord
   end
 
   public
+
   # method return Relation object with user`s successfully passed test
   def user_success(test_passage)
     if attempts.nil?

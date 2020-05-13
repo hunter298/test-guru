@@ -38,11 +38,6 @@ class TestPassage < ApplicationRecord
     end
   end
 
-  # user can get badge many times, so following is useless
-  # def first_success?
-  #   TestPassage.where(success: true, user_id: user_id, test_id: test_id).count = 1
-  # end
-
   private
 
   def after_initialize_set_attempt
