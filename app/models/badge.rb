@@ -4,19 +4,18 @@ class Badge < ApplicationRecord
   validates :name, :image, presence: true
   validate :validate_scope, on: :create
 
+  # method return true if user passed all tests according to condition of badge, else - false
   def check_condition(test_passage)
-    if test_passage.successful?
-      if exact_test
-        test_id == test_passage.test.id ? true : false
-      else
-        amount == matched_tests(user_success(test_passage)).count ? true : false
-      end
+    if exact_test
+      test_id == test_passage.test.id && check_attempts(test_passage)
+    else
+      amount == matched_tests(user_success(test_passage)).count && check_attempts(test_passage)
     end
-
   end
 
   private
 
+  # if badge relating only to exact test, no need to specify category or level
   def validate_scope
     if exact_test?
       errors.add(:test_id, :blank, message: 'Test not chosen') if test_id.nil?
@@ -25,6 +24,7 @@ class Badge < ApplicationRecord
     end
   end
 
+  # quantity of tests needed to be passed successfully to receive badge
   def amount
     if quantity
       quantity
@@ -33,6 +33,7 @@ class Badge < ApplicationRecord
     end
   end
 
+  # method check how much tests from scope satisfy condition
   def matched_tests(scope)
     if category.nil?
       scope.where(level: level.split('').map { |level| level.to_i })
@@ -43,8 +44,22 @@ class Badge < ApplicationRecord
     end
   end
 
+  public
+  # method return Relation object with user`s successfully passed test
   def user_success(test_passage)
-    Test.where(id: (test_passage.user.successful_test_passages.map { |passage| passage.test_id }.uniq))
+    if attempts.nil?
+      Test.where(id: (test_passage.user.successful_test_passages.map { |passage| passage.test_id }))
+    else
+      Test.where(id: (test_passage.user.successful_test_passages.select { |passage| check_attempts(passage) }.map { |passage| passage.test_id }))
+    end
+  end
+
+  def check_attempts(test_passage)
+    if attempts.nil?
+      true
+    else
+      test_passage.attempt <= attempts
+    end
   end
 
 end

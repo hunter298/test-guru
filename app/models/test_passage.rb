@@ -3,6 +3,7 @@ class TestPassage < ApplicationRecord
   belongs_to :test
   belongs_to :current_question, class_name: 'Question', optional: true
 
+  after_initialize :after_initialize_set_attempt
   before_validation :before_validation_set_current_question
 
   def accept!(answer_ids)
@@ -27,13 +28,30 @@ class TestPassage < ApplicationRecord
     test.questions.order(:id).where('id <= :current', current: current_question.id).count
   end
 
-  # def check_for_budges
-  #   if self.successful?
-  #     Badge.all.each
-  #   end
+  def check_for_badges
+    if successful?
+      Badge.all.each do |badge|
+        if badge.check_condition(self)
+          user.badges.push(badge)
+        end
+      end
+    end
+  end
+
+  # user can get badge many times, so following is useless
+  # def first_success?
+  #   TestPassage.where(success: true, user_id: user_id, test_id: test_id).count = 1
   # end
 
   private
+
+  def after_initialize_set_attempt
+    if (attempts = TestPassage.where(test_id: test_id, user_id: user_id).count) > 0
+      self.attempt = attempts
+    else
+      self.attempt = 1
+    end
+  end
 
   def before_validation_set_current_question
     self.current_question = next_question
@@ -49,7 +67,7 @@ class TestPassage < ApplicationRecord
   end
 
   def correct_answer?(answer_ids)
-      correct_answers.ids.sort == Array(answer_ids).map(&:to_i).sort
+    correct_answers.ids.sort == Array(answer_ids).map(&:to_i).sort
   end
 
   def correct_answers

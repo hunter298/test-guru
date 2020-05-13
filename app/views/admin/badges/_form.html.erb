@@ -1,0 +1,66 @@
+<%= form_for [:admin, @badge], local: true do |form| %>
+  <div class="row m-3">
+    <div class="col-12">
+      <h2> Create new badge:</h2>
+    </div>
+    <div class="col-12 mt-3">
+      <p><%= form.label :name %><br>
+        <%= form.text_field :name %></p>
+    </div>
+    <div class="col-12">
+      <p> Image: </p>
+      <%= form.radio_button :image, 'gold' %> Golden Medal <br>
+      <%= form.radio_button :image, 'silver' %> Silver Medal <br>
+      <%= form.radio_button :image, 'bronze' %> Bronze Medal
+    </div>
+  </div>
+  <div>
+    <div class="col-12 m-3">
+      <p> Exact test or group? </p>
+      <%= form.radio_button :exact_test, true, {checked: true, class: 'single-test'} %> One
+      <%= form.radio_button :exact_test, false, {checked: false, class: 'group-of-tests'} %> Group
+    </div>
+    <div class="col-12 m-3">
+      <p> Attempts: </p>
+      <%= form.radio_button :attempts, 1 %> One
+      <%= form.radio_button :attempts, nil %> Many
+    </div>
+  </div>
+  <div class="col-12 m-3 choose-test">
+    <p> Test</p>
+    <%= form.collection_select :test_id, Test.all, :id, :title do |b| %>
+      <p>
+        <%= b.check_box %>
+        <%= b.label %>
+      </p>
+    <% end %>
+  </div>
+  <div class="choose-category-level hide">
+    <div class="row m-3">
+      <div class="col-3 class">
+        <p> Category</p>
+        <%= form.collection_check_boxes :category, Category.all, :id, :title, include_hidden: false do |b| %>
+          <div class="form-check">
+            <%= b.check_box class: 'form-check-input' %>
+            <%= b.label %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="col-3">
+        <p> Level</p>
+        <%= form.collection_check_boxes :level, Test.select(:level).distinct.order(:level), :level, :level, include_hidden: false do |b| %>
+          <div class="form-check">
+            <%= b.check_box %>
+            <%= b.label %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row m-3">
+    <div class="col-12">
+      <%= form.submit "Submit", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
