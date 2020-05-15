@@ -22,7 +22,7 @@ class Admin::BadgesController < Admin::BaseController
                         end
 
     if @badge.save
-      redirect_to root_path
+      redirect_to admin_badges_path
     else
       render :new
     end
