@@ -21,21 +21,11 @@ class TestPassage < ApplicationRecord
   end
 
   def successful?
-    success_rate >= 85
+    update(success: true) if success_rate >= 85
   end
 
   def question_count
     test.questions.order(:id).where('id <= :current', current: current_question.id).count
-  end
-
-  def check_for_badges
-    if successful?
-      Badge.all.each do |badge|
-        if badge.check_condition(self)
-          user.badges.push(badge)
-        end
-      end
-    end
   end
 
   private

@@ -13,54 +13,39 @@
       <%= form.radio_button :image, 'silver' %> Silver Medal <br>
       <%= form.radio_button :image, 'bronze' %> Bronze Medal
     </div>
-  </div>
-  <div>
-    <div class="col-12 m-3">
-      <p> Exact test or group? </p>
-      <%= form.radio_button :exact_test, true, {checked: true, class: 'single-test'} %> One
-      <%= form.radio_button :exact_test, false, {checked: false, class: 'group-of-tests'} %> Group
+    <div class="col-12 mt-3">
+      <p> Badge for </p>
+      <%= radio_button_tag :parameter_type, 'Single test', checked = true, {class: 'badge-for', data: {parameter: 'single'}} %>
+      Single test <br>
+      <%= radio_button_tag :parameter_type, 'Success from N attempts', checked = false, {class: 'badge-for', data: {parameter: 'attempt'}} %>
+      Success
+      from N attempts <br>
+      <%= radio_button_tag :parameter_type, 'All test of certain category', checked = false, {class: 'badge-for', data: {parameter: 'category'}} %>
+      All test of certain category<br>
+      <%= radio_button_tag :parameter_type, 'All test of certain level', checked = false, {class: 'badge-for', data: {parameter: 'level'}} %>
+      All test of certain level
     </div>
-    <div class="col-12 m-3">
-      <p> Attempts: </p>
-      <%= form.radio_button :attempts, 1 %> One
-      <%= form.radio_button :attempts, nil %> Many
-    </div>
-  </div>
-  <div class="col-12 m-3 choose-test">
-    <p> Test</p>
-    <%= form.collection_select :test_id, Test.all, :id, :title do |b| %>
-      <p>
-        <%= b.check_box %>
-        <%= b.label %>
-      </p>
-    <% end %>
-  </div>
-  <div class="choose-category-level hide">
-    <div class="row m-3">
-      <div class="col-3 class">
-        <p> Category</p>
-        <%= form.collection_check_boxes :category, Category.all, :id, :title, include_hidden: false do |b| %>
-          <div class="form-check">
-            <%= b.check_box class: 'form-check-input' %>
-            <%= b.label %>
-          </div>
-        <% end %>
+    <div class="choosing-parameter">
+      <div class="col-6 mt-3 choose-parameter" data-parameter-type="single">
+        <%= form.label :parameter, 'Test:' %><br>
+        <%= form.collection_select :parameter, Test.all, :title, :title %>
       </div>
+      <div class="col-6 mt-3 choose-parameter hide" data-parameter-type="category">
+        <%= form.label :parameter, 'Category' %><br>
+        <%= form.collection_select :parameter, Category.all, :title, :title %>
+      </div>
+      <div class="col-6 mt-3 choose-parameter hide" data-parameter-type="level">
+        <%= form.label :parameter, 'Level:' %><br>
+        <%= form.collection_select :parameter, Test.all.select(:level).distinct(:level).order(:level), :level, :level %>
+      </div>
+      <div class="col-6 mt-3 choose-parameter hide" data-parameter-type="attempt">
+        <%= form.label :parameter, 'Attempts:' %><br>
+        <%= form.number_field :parameter %>
+      </div>
+    </div>
+    <div class="col-12 mt-3">
+      <%= form.submit class: "btn btn-primary mt-3" %>
+    </div>
+  </div>
 
-      <div class="col-3">
-        <p> Level</p>
-        <%= form.collection_check_boxes :level, Test.select(:level).distinct.order(:level), :level, :level, include_hidden: false do |b| %>
-          <div class="form-check">
-            <%= b.check_box %>
-            <%= b.label %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <div class="row m-3">
-    <div class="col-12">
-      <%= form.submit "Submit", class: "btn btn-primary" %>
-    </div>
-  </div>
 <% end %>

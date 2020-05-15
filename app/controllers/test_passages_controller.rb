@@ -11,16 +11,11 @@ class TestPassagesController < ApplicationController
 
   end
 
-  def check
-
-  end
-
   def update
     @test_passage.accept!(params[:answer_ids])
 
     if @test_passage.completed?
-      @test_passage.successful? ? @test_passage.update(success: true) : @test_passage.update(success: false)
-      @test_passage.check_for_badges
+      current_user.badges << BadgeService.new(@test_passage).badges if @test_passage.successful?
       TestsMailer.completed_test(@test_passage).deliver_now
       redirect_to result_test_passage_path(@test_passage)
     else

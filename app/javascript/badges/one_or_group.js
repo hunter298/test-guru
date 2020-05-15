@@ -1,25 +1,35 @@
-document.addEventListener('turbolinks:load', function(){
-    let single = document.querySelector('.single-test')
-    let group = document.querySelector('.group-of-tests')
+document.addEventListener('turbolinks:load', function () {
 
-    if (single) {
-        single.addEventListener('input', changeVisibility)
+
+    let hide = document.querySelectorAll('.choose-parameter')
+    for (i = 1; i < hide.length; i++) {
+        hide[i].remove()
+    }
+    let controls = document.querySelectorAll('.badge-for')
+
+    if (controls.length) {
+        for (i = 0; i < controls.length; i++) {
+            let type = controls[i].dataset.parameter
+            controls[i].addEventListener('input', function() {
+                changeVisibility(hide, type)
+            })
+        }
     }
 
-    if (group) {
-        group.addEventListener('input', changeVisibility)
-    }
+
 })
 
-function changeVisibility() {
-    let chooseCategoryLevel = document.querySelector('.choose-category-level')
-    let chooseTest = document.querySelector('.choose-test')
+function changeVisibility(hide, type) {
 
-    if (chooseTest.classList.contains('hide')) {
-        chooseTest.classList.remove('hide')
-        chooseCategoryLevel.classList.add('hide')
-    } else {
-        chooseTest.classList.add('hide')
-        chooseCategoryLevel.classList.remove('hide')
+
+    let control = document.querySelector('.choosing-parameter')
+
+    for (i = 0; i < hide.length; i++) {
+        if (hide[i].dataset.parameterType != type) {
+            hide[i].remove()
+        } else {
+            control.appendChild(hide[i])
+            hide[i].classList.remove('hide')
+        }
     }
 }

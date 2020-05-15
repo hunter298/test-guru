@@ -1,11 +1,4 @@
 <tr>
   <td class="align-middle"><%= image_tag("#{badge.image}.jpg", size: '40x40') %></td>
   <td class="align-middle"><%= badge.name %> </td>
-
-  <td class="align-middle">
-    <%= "For successfully passed #{badge.test_id.nil? ? 'tests of ' : "#{Test.find(badge.test_id).title} test"}" %>
-    <%= "#{Category.where(id: (badge.category.split('').map { |c| c.to_i })).pluck(:title).join(', ')} category" if badge.category %>
-    <%= "level #{badge.level.split('').join(', ')}" if badge.level %>
-  <%= "(one attempt)" if badge.attempts.present? %>
-  </td>
 </tr>

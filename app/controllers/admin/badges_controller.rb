@@ -10,12 +10,23 @@ class Admin::BadgesController < Admin::BaseController
 
   def create
     @badge = Badge.new(badge_params)
+    @badge.parameter += case params[:parameter_type]
+                        when 'Single test'
+                          'tst'
+                        when 'Success from N attempts'
+                          'atm'
+                        when 'All test of certain category'
+                          'ctg'
+                        when 'All test of certain level'
+                          'lvl'
+                        end
 
     if @badge.save
-      redirect_to :admin_badges
+      redirect_to root_path
     else
       render :new
     end
+
   end
 
   def destroy
@@ -27,18 +38,6 @@ class Admin::BadgesController < Admin::BaseController
   private
 
   def badge_params
-    name = params[:badge][:name]
-    if params[:badge][:exact_test] == "true"
-      exact_test = true
-      test_id = params[:badge][:test_id].to_i
-    else
-      exact_test = false
-      category = params[:badge][:category].nil? ? nil : params[:badge][:category].join
-      level = params[:badge][:level].nil? ? nil : params[:badge][:level].join
-    end
-    attempts = params[:badge][:attempts].to_i == 0 ? nil : params[:badge][:attempts].to_i
-    image = params[:badge][:image]
-
-    {name: name, exact_test: exact_test, test_id: test_id, category: category, level: level, attempts: attempts, image: image}
+    params.require(:badge).permit(:name, :image, :parameter)
   end
 end
