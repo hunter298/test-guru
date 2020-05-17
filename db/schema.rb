@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_14_214452) do
+ActiveRecord::Schema.define(version: 2020_05_15_200938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,8 @@ ActiveRecord::Schema.define(version: 2020_05_14_214452) do
     t.string "image", default: "bronze", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "parameter", null: false
+    t.string "rule_value", null: false
+    t.string "rule", null: false
   end
 
   create_table "badges_users", id: false, force: :cascade do |t|

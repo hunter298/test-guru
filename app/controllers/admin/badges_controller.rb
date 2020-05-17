@@ -10,16 +10,6 @@ class Admin::BadgesController < Admin::BaseController
 
   def create
     @badge = Badge.new(badge_params)
-    @badge.parameter += case params[:parameter_type]
-                        when 'Single test'
-                          'tst'
-                        when 'Success from N attempts'
-                          'atm'
-                        when 'All test of certain category'
-                          'ctg'
-                        when 'All test of certain level'
-                          'lvl'
-                        end
 
     if @badge.save
       redirect_to admin_badges_path
@@ -38,6 +28,6 @@ class Admin::BadgesController < Admin::BaseController
   private
 
   def badge_params
-    params.require(:badge).permit(:name, :image, :parameter)
+    params.require(:badge).permit(:name, :image, :rule, :rule_value)
   end
 end

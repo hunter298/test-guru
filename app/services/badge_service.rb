@@ -1,44 +1,39 @@
 class BadgeService
 
+  attr_reader :passed_tests_ids
+
   def initialize(test_passage)
-    @test_passage = test_passage
     @test = test_passage.test
     @user = test_passage.user
     @success = test_passage.success
     @attempt = test_passage.attempt
-    @passed_tests = TestPassage.where(user: @user, success: true).pluck(:test_id)
+    @passed_tests_ids = TestPassage.where(user: @user, success: true).pluck(:test_id)
   end
 
   def badges
-    Badge.where(parameter: conditions_matched)
+    Badge.select { |badge| send(badge.rule, badge.rule_value) }
   end
 
+  # private
 
+  def check_test(rule_value)
+    @test.title == rule_value
+  end
 
-  def conditions_matched
-    if @test_passage.success
-      [] << check_test << check_category << check_level << check_attempt
+  def check_category(rule_value)
+    if @test.category_id == rule_value.to_i
+      (Test.where(category_id: rule_value).pluck(:id) - @passed_tests_ids).empty?
     end
   end
 
-  def check_test
-    @test.title + 'tst'
-  end
-
-  def check_category
-    if (Test.where(category: @test.category).pluck(:id) - @passed_tests).empty?
-      @test.category.title + 'ctg'
+  def check_level(rule_value)
+    if @test.level == rule_value.to_i
+      (Test.where(level: rule_value).pluck(:id) - @passed_tests_ids).empty?
     end
   end
 
-  def check_level
-    if (Test.where(level: @test.level).pluck(:id) - @passed_tests).empty?
-      @test.level.to_s + 'lvl'
-    end
-  end
-
-  def check_attempt
-    (@attempt.to_s + 'atm') if (TestPassage.where(user: @user, test: @test, success: true).count == 1)
+  def check_attempt(rule_value)
+    @attempt == rule_value.to_i
   end
 
 end
