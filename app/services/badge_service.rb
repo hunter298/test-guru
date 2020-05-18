@@ -1,7 +1,5 @@
 class BadgeService
 
-  attr_reader :passed_tests_ids
-
   def initialize(test_passage)
     @test_passage = test_passage
     @test = test_passage.test
@@ -11,7 +9,7 @@ class BadgeService
   end
 
   def badges
-    (Badge.select { |badge| send(badge.rule, badge.rule_value) }) if @test_passage.success
+    @test_passage.successful? ? (Badge.select { |badge| send(badge.rule, badge.rule_value) }) : []
   end
 
   # private
