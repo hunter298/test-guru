@@ -30,6 +30,7 @@ ru:
       author: "Автор"
       quest_quantity: "К-во вопросов"
       actions: "Действия"
+      my_badges: "Мои достижения"
     test:
       start: "Начать"
 
@@ -66,6 +67,7 @@ ru:
         actions: "Действия"
         add_test: "Добавить новый тест"
         gists: "Показать вопросы сохраненные в гист"
+        badges: "Достижения"
       new:
         create_new_test: "Создать новый тест:"
       create:
@@ -135,7 +137,30 @@ ru:
         url: "Ссылка на гист"
         author: "Автор"
         back: "Назад"
-      
+
+    badges:
+      form:
+        golden: "Золотая медаль"
+        silver: "Серебряная медаль"
+        bronze: "Бронзовая медаль"
+        badge_for: "Бейдж за:"
+        test_title: "Имя теста:"
+        category: "Категория:"
+        level: "Уровень сложности"
+        attempts_quantity: "Кол-во ошибок:"
+        submit: "Созранить бейдж"
+        header: "Создать новый бейдж:"
+      badge:
+        delete: "Удалить"
+        confirm: "Ты уверен?"
+      index:
+        header: "Управление бейджами"
+        delete: "Удалить"
+        title: "Название"
+        icon: "Иконка"
+        add: "Создать новый бейдж"
+      new:
+        header: "Создать новый бейдж"
   shared:
     errors:
       header:
@@ -158,3 +183,17 @@ ru:
       submit: "Отправить"
     create:
       sent: "Ваш отзыв был отправлен"
+  exact_test: "Определенный тест"
+  exact_category: "Все тесты определенной категории"
+  exact_level: "Все тесты определенного уровня"
+  exact_attempt: "Тест пройден с N-ой попытки"
+  badges:
+    all:
+      header: "Все возможные достижения"
+      icon: "Иконка"
+      title: "Название"
+    index:
+      all: "Все возможные достижения"
+      header: "Твои достижения"
+      icon: "Иконка"
+      title: "Название"

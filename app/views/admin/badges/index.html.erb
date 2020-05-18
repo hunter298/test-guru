@@ -1,15 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h1><%= 'Badges:' %></h1>
-      <%= link_to 'Add badge', new_admin_badge_path %>
+      <h1><%= t('.header') %></h1>
+      <%= link_to t('.add'), new_admin_badge_path %>
     </div>
     <table class="table table-responsive col-12">
       <thead>
       <tr>
-        <th scope="col"><%= 'Icon' %></th>
-        <th scope="col" ><%= 'Title' %></th>
-        <th scope="col"><%= 'Delete' %></th>
+        <th scope="col"><%= t('.icon') %></th>
+        <th scope="col" ><%= t('.title') %></th>
+        <th scope="col"><%= t('.delete') %></th>
       </tr>
       </thead>
       <tbody>

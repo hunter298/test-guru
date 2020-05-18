@@ -5,8 +5,8 @@ en:
       question: "Question"
       answer: "Answer"
       user: "User"
-      created_at: "Created"
-      updated_at: "Updated"
+      badge: "Badge"
+
     question:
       body: "Question"
       test: "Test"
@@ -25,10 +25,15 @@ en:
         level: "Difficulty level"
         category_id: "Test category"
         creator: "Author"
+      badge:
+        name: "Name"
+        image: "Image"
+        rule: "Rule"
+        rule_value: "Rule value"
 
 
     errors:
       messages:
         blank: "Can't be empty"
-  file_name: ""
+
 

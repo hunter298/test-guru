@@ -3,12 +3,11 @@ class TestPassage < ApplicationRecord
   belongs_to :test
   belongs_to :current_question, class_name: 'Question', optional: true
 
-  after_initialize :after_initialize_set_attempt
   before_validation :before_validation_set_current_question
 
   def accept!(answer_ids)
     self.correct_questions += 1 if correct_answer?(answer_ids)
-
+    self.success = true if successful?
     save!
   end
 
@@ -21,7 +20,7 @@ class TestPassage < ApplicationRecord
   end
 
   def successful?
-    update(success: true) if success_rate >= 85
+    success_rate >= 85
   end
 
   def question_count
@@ -29,14 +28,6 @@ class TestPassage < ApplicationRecord
   end
 
   private
-
-  def after_initialize_set_attempt
-    if (attempts = TestPassage.where(test_id: test_id, user_id: user_id).count) > 0
-      self.attempt = attempts
-    else
-      self.attempt = 1
-    end
-  end
 
   def before_validation_set_current_question
     self.current_question = next_question

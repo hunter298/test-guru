@@ -1,50 +1,39 @@
 <%= form_for [:admin, @badge], local: true do |form| %>
   <div class="row m-3">
-    <div class="col-12">
-      <h2> Create new badge:</h2>
-    </div>
     <div class="col-12 mt-3">
       <p><%= form.label :name %><br>
         <%= form.text_field :name %></p>
     </div>
     <div class="col-12">
-      <p> Image: </p>
-      <%= form.radio_button :image, 'gold' %> Golden Medal <br>
-      <%= form.radio_button :image, 'silver' %> Silver Medal <br>
-      <%= form.radio_button :image, 'bronze' %> Bronze Medal
+      <%= form.label :image %> <br>
+      <%= form.radio_button :image, 'gold' %> <%= t('.golden') %> <br>
+      <%= form.radio_button :image, 'silver' %> <%= t('.silver') %> <br>
+      <%= form.radio_button :image, 'bronze' %> <%= t('.bronze') %>
     </div>
     <div class="col-12 mt-3">
-      <p> Badge for </p>
-      <%= form.radio_button :rule, 'check_test', {checked: true, class: 'badge-for', data: {parameter: 'single'}} %>
-      Single test <br>
-      <%= form.radio_button :rule, 'check_attempt', {class: 'badge-for', data: {parameter: 'attempt'}} %>
-      Success
-      from N attempts <br>
-      <%= form.radio_button :rule, 'check_category', {class: 'badge-for', data: {parameter: 'category'}} %>
-      All test of certain category<br>
-      <%= form.radio_button :rule, 'check_level', {class: 'badge-for', data: {parameter: 'level'}} %>
-      All test of certain level
+        <%= form.label :rule, t('.badge_for') %><br>
+        <%= form.collection_select(:rule, Badge::RULES, :first, :last) %>
     </div>
     <div class="choosing-parameter">
-      <div class="col-6 mt-3 choose-parameter" data-parameter-type="single">
-        <%= form.label :parameter, 'Test:' %><br>
+      <div class="col-6 mt-3 check_test parameter" data-parameter-type="single">
+        <%= form.label :rule_value, t('.test_title') %>
         <%= form.collection_select :rule_value, Test.all, :title, :title %>
       </div>
-      <div class="col-6 mt-3 choose-parameter hide" data-parameter-type="category">
-        <%= form.label :parameter, 'Category' %><br>
+      <div class="col-6 mt-3 check_category parameter" data-parameter-type="category">
+        <%= form.label :rule_value, t('.category') %><br>
         <%= form.collection_select :rule_value, Category.all, :id, :title %>
       </div>
-      <div class="col-6 mt-3 choose-parameter hide" data-parameter-type="level">
-        <%= form.label :parameter, 'Level:' %><br>
+      <div class="col-6 mt-3 check_level parameter" data-parameter-type="level">
+        <%= form.label :rule_value, t('.level') %><br>
         <%= form.collection_select :rule_value, Test.all.select(:level).distinct(:level).order(:level), :level, :level %>
       </div>
-      <div class="col-6 mt-3 choose-parameter hide" data-parameter-type="attempt">
-        <%= form.label :parameter, 'Attempts:' %><br>
+      <div class="col-6 mt-3 check_attempt parameter" data-parameter-type="attempt">
+        <%= form.label :rule_value, t('.attempts_quantity') %><br>
         <%= form.number_field :rule_value %>
       </div>
     </div>
     <div class="col-12 mt-3">
-      <%= form.submit class: "btn btn-primary mt-3" %>
+      <%= form.submit t('.submit'), class: "btn btn-primary mt-3" %>
     </div>
   </div>
 

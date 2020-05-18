@@ -60,6 +60,7 @@ en:
       author: "Author"
       quest_quantity: "Qestion q-ty"
       actions: "Actions"
+      my_badges: "My badges"
     test:
       start: "Start"
 
@@ -96,6 +97,7 @@ en:
         actions: "Actions"
         add_test: "Add new test"
         gists: "Show gisted questions"
+        badges: "Badges"
       new:
         create_new_test: "Create new test:"
       create:
@@ -165,6 +167,29 @@ en:
         url: "Gist URL"
         author: "Author"
         back: "Back"
+    badges:
+      form:
+        golden: "Golden medal"
+        silver: "Silver medal"
+        bronze: "Bronze medal"
+        badge_for: "Badge for:"
+        test_title: "Test title:"
+        category: "Category:"
+        level: "Difficulty level:"
+        attempts_quantity: "Attempts quantity:"
+        submit: "Save badge"
+        header: "Create new badge:"
+      badge:
+        delete: "Delete"
+        confirm: "Are You sure?"
+      index:
+        header: "Badges management"
+        delete: "Delete"
+        title: "Title"
+        icon: "Icon"
+        add: "Add new badge"
+      new:
+        header: "Create new badge"
 
   shared:
     errors:
@@ -186,3 +211,17 @@ en:
       submit: "Send"
     create:
       sent: "Your feedback was sent"
+  exact_test: "Exact test"
+  exact_category: "All test of certain category"
+  exact_level: "All tests of certain level"
+  exact_attempt: "Test passed after N attempts"
+  badges:
+    all:
+      header: "All badges"
+      icon: "Icon"
+      title: "Title"
+    index:
+      all: "All badges"
+      header: "Youe badges"
+      icon: "Icon"
+      title: "Title"
