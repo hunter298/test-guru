@@ -211,10 +211,7 @@ en:
       submit: "Send"
     create:
       sent: "Your feedback was sent"
-  exact_test: "Exact test"
-  exact_category: "All test of certain category"
-  exact_level: "All tests of certain level"
-  exact_attempt: "Test passed after N attempts"
+
   badges:
     all:
       header: "All badges"
@@ -225,3 +222,9 @@ en:
       header: "Youe badges"
       icon: "Icon"
       title: "Title"
+
+  rules:
+    check_test: "Exact test"
+    check_category: "All test of certain category"
+    check_level: "All tests of certain level"
+    check_attempt: "Test passed after N attempts"

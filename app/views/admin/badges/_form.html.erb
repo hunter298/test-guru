@@ -12,7 +12,7 @@
     </div>
     <div class="col-12 mt-3">
         <%= form.label :rule, t('.badge_for') %><br>
-        <%= form.collection_select(:rule, Badge::RULES, :first, :last) %>
+        <%= form.collection_select(:rule, rules_lib, :first, :last) %>
     </div>
     <div class="choosing-parameter">
       <div class="col-6 mt-3 check_test parameter" data-parameter-type="single">

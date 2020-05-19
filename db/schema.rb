@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_210307) do
+ActiveRecord::Schema.define(version: 2020_05_19_094740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "achievments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "badge_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["badge_id"], name: "index_achievments_on_badge_id"
+    t.index ["user_id"], name: "index_achievments_on_user_id"
+  end
 
   create_table "answers", force: :cascade do |t|
     t.string "body", null: false
@@ -31,13 +40,6 @@ ActiveRecord::Schema.define(version: 2020_05_17_210307) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "rule_value", null: false
     t.string "rule", null: false
-  end
-
-  create_table "badges_users", id: false, force: :cascade do |t|
-    t.bigint "badge_id", null: false
-    t.bigint "user_id", null: false
-    t.index ["badge_id"], name: "index_badges_users_on_badge_id"
-    t.index ["user_id"], name: "index_badges_users_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -114,6 +116,8 @@ ActiveRecord::Schema.define(version: 2020_05_17_210307) do
     t.index ["type"], name: "index_users_on_type"
   end
 
+  add_foreign_key "achievments", "badges"
+  add_foreign_key "achievments", "users"
   add_foreign_key "answers", "questions"
   add_foreign_key "gists", "users"
   add_foreign_key "questions", "tests"
