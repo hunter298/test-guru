@@ -52,7 +52,7 @@ class BadgeService
 
   def check_attempt(rule_value)
     if @test_passage.successful?
-      TestPassage.where(test_id: @test.id, user_id: @user.id) == rule_value.to_i
+      TestPassage.where(test_id: @test.id, user_id: @user.id).count == rule_value.to_i
     end
   end
 
