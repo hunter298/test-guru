@@ -51,7 +51,7 @@ class BadgeService
   end
 
   def check_attempt(rule_value)
-    (TestPassage.where(test_id: @test.id, user_id: @user.id).count == rule_value.to_i) && @test_passage.successful?
+    (TestPassage.where(test_id: @test.id, user_id: @user.id, success: nil).count + 1 == rule_value.to_i) && @test_passage.successful?
   end
 
 end

@@ -147,7 +147,7 @@ ru:
         test_title: "Имя теста:"
         category: "Категория:"
         level: "Уровень сложности"
-        attempts_quantity: "Кол-во ошибок:"
+        attempts_quantity: "Кол-во попыток:"
         submit: "Созранить бейдж"
         header: "Создать новый бейдж:"
       badge:
