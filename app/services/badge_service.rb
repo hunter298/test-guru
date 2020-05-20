@@ -11,21 +11,20 @@ class BadgeService
   end
 
   def badges
-    (Badge.select { |badge| send(badge.rule, badge.rule_value) }) || []
+    (Badge.select { |badge| send(badge.rule, badge.rule_value, badge) }) || []
   end
 
   # private
 
-  def check_test(rule_value)
+  def check_test(rule_value, badge)
     (@test.title == rule_value) && @test_passage.successful?
   end
 
   # method check (1) last test_passage test category is match rule_value (2) all test of this category were passed earlier
   # (3) all test passed earlier were passed  not less times then last one
-  def check_category(rule_value)
+  def check_category(rule_value, badge)
     tests = Test.where(category_id: rule_value)
     if (@test.category_id == rule_value.to_i) && (@test_passage.successful?)
-      badge = Badge.where(rule: 'check_category', rule_value: rule_value).first
       if @user.badges.include?(badge)
         from_time = Achievment.where(badge: badge, user: @user).order(:created_at).last.created_at
         (tests.pluck(:id) - @passed_tests.where(created_at: (from_time..Time.current)).pluck(:test_id)).empty?
@@ -37,10 +36,9 @@ class BadgeService
 
   # method check (1) last test_passage test level is match rule_value (2) all test of this level were passed earlier
   # (3) all test passed earlier were passed  not less times then last one
-  def check_level(rule_value)
+  def check_level(rule_value, badge)
     tests = Test.where(level: rule_value)
     if (@test.level == rule_value.to_i) && @test_passage.successful?
-      badge = Badge.where(rule: 'check_level', rule_value: rule_value).first
       if @user.badges.include?(badge)
         from_time = Achievment.where(badge: badge, user: @user).order(:created_at).last.created_at
         (tests.pluck(:id) - @passed_tests.where(created_at: (from_time..Time.current)).pluck(:test_id)).empty?
@@ -50,7 +48,7 @@ class BadgeService
     end
   end
 
-  def check_attempt(rule_value)
+  def check_attempt(rule_value, badge)
     if @test_passage.successful?
       TestPassage.where(test_id: @test.id, user_id: @user.id).count == rule_value.to_i
     end
