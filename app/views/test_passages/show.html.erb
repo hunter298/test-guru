@@ -1,5 +1,9 @@
 <h1><%= t('.header', title: @test_passage.test.title) %></h1>
-
+<%= content_tag :p,
+                '',
+                class: 'timer',
+                data: { timer_finish: (@test_passage.created_at + @test_passage.test.timer*60).to_s,
+                        result: result_test_passage_path(@test_passage) } if @test_passage.test.timer %>
 <p>
   <b> <%= @test_passage.current_question.body %> </b>
 </p>
