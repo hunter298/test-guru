@@ -6,9 +6,19 @@ class TestPassage < ApplicationRecord
   before_validation :before_validation_set_current_question
 
   def accept!(answer_ids)
-    self.correct_questions += 1 if correct_answer?(answer_ids)
-    self.success = true if successful?
-    save!
+    if timer_finish <= Time.current
+      self.success = false
+      self.current_question = nil
+      save!
+    else
+      self.correct_questions += 1 if correct_answer?(answer_ids)
+      self.success = true if successful?
+      save!
+    end
+  end
+
+  def timer_finish
+    created_at + test.timer * 60
   end
 
   def completed?
