@@ -2,8 +2,7 @@
 <%= content_tag :p,
                 '',
                 class: 'timer',
-                data: { timer_finish: @test_passage.timer_finish.to_s,
-                        result: result_test_passage_path(@test_passage) } if @test_passage.test.timer %>
+                data: { timer_finish: @test_passage.timer_finish.to_s } if @test_passage.test.timer %>
 <p>
   <b> <%= @test_passage.current_question.body %> </b>
 </p>
