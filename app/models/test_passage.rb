@@ -38,11 +38,17 @@ class TestPassage < ApplicationRecord
     test.questions.order(:id).where('id <= :current', current: current_question.id).count
   end
 
+  def in_progress?
+    if persisted?
+      timer_finish > Time.current
+    else
+      true
+    end
+  end
+
   private
 
-  def in_progress?
-    success.nil?
-  end
+
 
   def before_validation_set_current_question
     self.current_question = next_question

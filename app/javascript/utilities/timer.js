@@ -9,9 +9,9 @@ document.addEventListener('turbolinks:load', function () {
             let minutes = Math.floor(distance / (1000 * 60))
             let seconds = Math.floor(distance % (1000 * 60) / 1000)
             control.innerHTML = minutes + "m " + seconds + "s"
-
             if (distance < 0) {
                 document.querySelector("form").submit()
+                clearInterval(x)
             }
         }, 1000)
     }
